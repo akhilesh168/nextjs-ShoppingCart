@@ -3,7 +3,6 @@ import CategoryCard from "../components/CategoryCard";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategory } from "../redux/category.slice";
-import NavbarWithProps from "../components/NavbarWithProps";
 
 export default function HomePage({ categories, offers }) {
   const dispatch = useDispatch();
