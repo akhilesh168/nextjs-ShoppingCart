@@ -8,8 +8,8 @@ export default function CategoryPanel() {
   const categories = useSelector((state) => state.categories);
 
   const categoriesLink = categories.map((category) => (
-    <>
-      <Navbar fill className="flex-column" key={category.id}>
+    <div key={category.id}>
+      <Navbar fill="true" className="flex-column">
         <Container>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -26,7 +26,7 @@ export default function CategoryPanel() {
         </Container>
       </Navbar>
       <Divider variant="middle" />
-    </>
+    </div>
   ));
   return <>{categoriesLink}</>;
 }

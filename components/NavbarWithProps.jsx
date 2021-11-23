@@ -1,16 +1,20 @@
-import Image from "next/image";
+import { Image } from "react-bootstrap";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { UserContext } from "../pages/_app";
 import firebase from "../firebase/initAuth";
 import { useRouter } from "next/router";
 import { Grid } from "@mui/material";
-
+import MyCartDialog from "./MyCartDialog";
+import Fab from "@mui/material/Fab";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 const NavbarWithProps = () => {
   const user = useContext(UserContext);
-  const signout = async () => {
+  const [open, setOpen] = useState(false);
+
+  const logout = async () => {
     await firebase.auth().signOut();
     router.push("/");
     s;
@@ -29,8 +33,7 @@ const NavbarWithProps = () => {
           {" "}
           <Image
             src="/static/images/logo.png"
-            width={100}
-            height={100}
+            style={{ objectFit: "cover", height: "100%", width: "auto" }}
             alt="logo"
           />{" "}
         </Navbar.Brand>
@@ -53,7 +56,7 @@ const NavbarWithProps = () => {
             <Grid item>
               <Nav className="justify-content-end">
                 {user.email ? (
-                  <Nav.Link onClick={() => signout()}>Logout</Nav.Link>
+                  <Nav.Link onClick={() => logout()}>Logout</Nav.Link>
                 ) : (
                   <>
                     <Link href="/login" passHref>
@@ -67,20 +70,18 @@ const NavbarWithProps = () => {
               </Nav>
             </Grid>
             <Grid item>
-              {" "}
-              <span>
-                <Image
-                  src="/static/images/cart.svg"
-                  width={20}
-                  height={20}
-                  alt="logo"
-                />
-              </span>
-              <Link href="/cart" passHref>
-                <Nav.Link style={{ display: "inline" }}>
-                  {cartLength} Items{" "}
-                </Nav.Link>
-              </Link>
+              <Fab
+                variant="extended"
+                size="small"
+                color="default"
+                aria-label="add"
+                onClick={() => setOpen(true)}
+              >
+                <ShoppingCartIcon sx={{ mr: 1 }} />
+                {cartLength} Items
+              </Fab>
+
+              <MyCartDialog open={open} onClose={() => setOpen(false)} />
             </Grid>
           </Grid>
         </Navbar.Collapse>

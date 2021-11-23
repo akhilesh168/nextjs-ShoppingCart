@@ -5,14 +5,12 @@ import ProductCard from "./ProductCard";
 
 export default function Product({ products }) {
   return (
-    <div>
-      <Grid container spacing={12}>
-        {products.map((item) => (
-          <Grid item key={item.id} style={{ display: "flex" }}>
-            <ProductCard product={item} />
-          </Grid>
-        ))}
-      </Grid>
-    </div>
+    <Grid container spacing={12}>
+      {products.map((item) => (
+        <Grid item key={item.id} style={{ display: "flex" }}>
+          <ProductCard product={item} />
+        </Grid>
+      ))}
+    </Grid>
   );
 }
