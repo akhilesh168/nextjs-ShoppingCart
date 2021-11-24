@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+** Clone or download the this repo https://github.com/gautam-in/shopping-cart-assignment  and then npm start it for serving the api**
+
 First, run the development server:
 
 ```bash
