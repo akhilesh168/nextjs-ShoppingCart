@@ -1,9 +1,6 @@
-// auth.tsx
-import { Divider } from "@material-ui/core";
 import { Grid, Typography } from "@mui/material";
 import React from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import styled from "styled-components";
 import Login from "../components/Login";
 import firebase from "../firebase/initAuth";
 

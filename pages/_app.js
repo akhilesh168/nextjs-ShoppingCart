@@ -14,6 +14,7 @@ import { CacheProvider } from "@emotion/react";
 import createEmotionCache from "../styles/createEmotionCache";
 import theme from "../styles/theme";
 import "/styles/globals.css";
+import NextNProgress from "nextjs-progressbar";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -38,6 +39,7 @@ function MyApp(props) {
               }}
             >
               <Layout>
+                <NextNProgress />
                 <Component {...pageProps} />
               </Layout>
             </UserContext.Provider>
