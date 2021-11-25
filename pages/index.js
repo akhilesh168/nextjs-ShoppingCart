@@ -1,6 +1,5 @@
 import OfferCarousel from "../components/OfferCarousel";
 import CategoryCard from "../components/CategoryCard";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategory } from "../redux/category.slice";
 import { getCategories } from "./api/category";

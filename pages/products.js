@@ -1,4 +1,3 @@
-import axios from "axios";
 import React from "react";
 
 import CategoryPanel from "../components/CategoryPanel";
@@ -32,7 +31,6 @@ export default function Products({ products, categories }) {
 }
 
 export async function getServerSideProps() {
-  const url = "http://localhost:5000";
   const categories = getCategories();
   const products = getProducts();
   return {
