@@ -1,7 +1,8 @@
 import React from "react";
-import SignUp from "../components/SignUp";
+import dynamic from "next/dynamic";
 
-export default function LoginPage() {
+const SignUp = dynamic(() => import("../components/SignUp.jsx"));
+export default function signUp() {
   return (
     <div>
       <SignUp />
