@@ -4,17 +4,10 @@ import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase from "../firebase/initAuth";
 import dynamic from "next/dynamic";
 
-function LoginPage() {
+function LoginPage({ uiConfig, firebase }) {
   const Login = dynamic(() => import("../components/Login.jsx"));
   // Configure FirebaseUI.
-  const uiConfig = {
-    signInFlow: "popup",
-    signInSuccessUrl: "/",
-    signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.GithubAuthProvider.PROVIDER_ID,
-    ],
-  };
+
   return (
     <Grid container spacing={12}>
       <Grid item>
@@ -28,12 +21,28 @@ function LoginPage() {
       <Grid item>
         {" "}
         <StyledFirebaseAuth
-          uiConfig={uiConfig}
           firebaseAuth={firebase.auth()}
+          uiConfig={uiConfig}
         />
       </Grid>
     </Grid>
   );
 }
 
+export async function getServerSideProps() {
+  const uiConfig = {
+    signInFlow: "popup",
+    signInSuccessUrl: "/",
+    signInOptions: [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.GithubAuthProvider.PROVIDER_ID,
+    ],
+  };
+  return {
+    props: {
+      uiConfig,
+      firebase,
+    },
+  };
+}
 export default LoginPage;
