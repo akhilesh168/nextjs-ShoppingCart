@@ -3,6 +3,8 @@ import CategoryCard from "../components/CategoryCard";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategory } from "../redux/category.slice";
+import { getCategories } from "./api/category";
+import { getOffers } from "./api/banners/offers";
 
 export default function HomePage({ categories, offers }) {
   const dispatch = useDispatch();
@@ -23,9 +25,8 @@ export default function HomePage({ categories, offers }) {
 }
 
 export async function getServerSideProps() {
-  const url = "http://localhost:5000";
-  const categories = (await axios.get(`${url}/categories`)).data;
-  const offers = (await axios.get(`${url}/banners`)).data;
+  const categories = getCategories();
+  const offers = getOffers();
 
   return {
     props: {

@@ -7,6 +7,8 @@ import { getAllProduct } from "../redux/product.slice";
 import { getAllCategory } from "../redux/category.slice";
 import { useDispatch, useSelector } from "react-redux";
 import { Grid } from "@mui/material";
+import { getCategories } from "./api/category";
+import { getProducts } from "./api/products";
 
 export default function Products({ products, categories }) {
   const dispatch = useDispatch();
@@ -31,8 +33,8 @@ export default function Products({ products, categories }) {
 
 export async function getServerSideProps() {
   const url = "http://localhost:5000";
-  const categories = (await axios.get(`${url}/categories`)).data;
-  const products = (await axios.get(`${url}/products`)).data;
+  const categories = getCategories();
+  const products = getProducts();
   return {
     props: {
       products,

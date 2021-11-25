@@ -3,6 +3,8 @@ import { Row, Col } from "react-bootstrap";
 import Product from "../../components/Product";
 import CategoryPanel from "../../components/CategoryPanel";
 import axios from "axios";
+import { getCategories } from "../api/category";
+import { getProductsByCategory } from "../api/category/[id]";
 
 export default function CategoriesPage({ categoryId, products }) {
   const productByCategory = products.filter(
@@ -23,9 +25,9 @@ export default function CategoriesPage({ categoryId, products }) {
 }
 
 export async function getServerSideProps(ctx) {
-  const url = "http://localhost:5000";
-  const products = (await axios.get(`${url}/products`)).data;
   const categoryId = ctx.query.id;
+  console.log(categoryId);
+  const products = getProductsByCategory(categoryId);
   return {
     props: {
       categoryId,
