@@ -12,6 +12,8 @@
 /.next/
 /out/
 
+.package-lock.json
+
 # production
 /build
 
@@ -30,5 +32,4 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# vercel
-.vercel
+
