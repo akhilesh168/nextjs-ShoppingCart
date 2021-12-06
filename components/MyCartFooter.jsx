@@ -4,16 +4,41 @@ import { Button, Grid } from "@mui/material";
 import { Image } from "react-bootstrap";
 import { ArrowRight } from "@mui/icons-material";
 import { useRouter } from "next/router";
+import { loadStripe } from "@stripe/stripe-js";
+import { useSelector } from "react-redux";
+import { API_HANDLER } from "../lib/util/apiUtil";
+import { cartCheckoutDataTransform } from "../lib/util/transformDataUtil";
 
+const stripePromise = loadStripe(process.env.STRIPE_PUBLIC_KEY);
 export default function MyCartFooter({
   totalCartPrice,
   cartLength,
   handleClose,
 }) {
   const router = useRouter();
+  const cart = useSelector((state) => state.cart);
   const handleRoute = () => {
     router.push("/products");
     handleClose();
+  };
+
+  const createCheckOutSession = async () => {
+    const stripe = await stripePromise;
+
+    const checkoutSession = await API_HANDLER.postRequest(
+      "/api/create-checkout-session",
+      {
+        items: cartCheckoutDataTransform(cart),
+        email: "test@gmail.com",
+      }
+    );
+    const result = await stripe.redirectToCheckout({
+      sessionId: checkoutSession.data.id,
+    });
+
+    if (result.error) {
+      alert(result.error.message);
+    }
   };
   return (
     <div>
@@ -58,7 +83,11 @@ export default function MyCartFooter({
             </Typography>
           </div>
           <div className="container-fluid text-center">
-            <Button variant="contained" color={"error"}>
+            <Button
+              variant="contained"
+              color={"error"}
+              onClick={createCheckOutSession}
+            >
               Proceed to checkout {`  RS  ${totalCartPrice}`} <ArrowRight />
             </Button>
           </div>

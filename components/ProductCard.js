@@ -12,11 +12,8 @@ import {
   Typography,
 } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
-import MuiAlert from "@mui/material/Alert";
+import Alert from "../components/Alert";
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
 export default function ProductCard({ product }) {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
@@ -26,7 +23,7 @@ export default function ProductCard({ product }) {
     setOpen(true);
   };
 
-  const handleClose = (event, reason) => {
+  const handleClose = () => {
     setOpen(false);
   };
   return (

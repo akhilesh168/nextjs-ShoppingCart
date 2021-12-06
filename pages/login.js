@@ -1,8 +1,9 @@
 import { Grid, Typography } from "@mui/material";
 import React from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import firebase from "../firebase/initAuth";
+import firebase from "../lib/firebase/initAuth";
 import dynamic from "next/dynamic";
+
 const Login = dynamic(() => import("../components/Login.jsx"));
 
 function LoginPage() {
@@ -16,23 +17,25 @@ function LoginPage() {
     ],
   };
   return (
-    <Grid container spacing={12}>
-      <Grid item>
-        <Login />
-      </Grid>
+    <>
+      <Grid container spacing={12}>
+        <Grid item>
+          <Login />
+        </Grid>
 
-      <Grid item>
-        <Typography>Or</Typography>
-      </Grid>
+        <Grid item>
+          <Typography>Or</Typography>
+        </Grid>
 
-      <Grid item>
-        {" "}
-        <StyledFirebaseAuth
-          firebaseAuth={firebase.auth()}
-          uiConfig={uiConfig}
-        />
+        <Grid item>
+          {" "}
+          <StyledFirebaseAuth
+            firebaseAuth={firebase.auth()}
+            uiConfig={uiConfig}
+          />
+        </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 }
 

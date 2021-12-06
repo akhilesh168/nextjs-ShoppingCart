@@ -1,17 +1,12 @@
 import React from "react";
 import dynamic from "next/dynamic";
 
-export default function SignUpPage(props) {
-  const SignUp = dynamic(() => import("../components/SignUp.jsx"));
+const SignUp = dynamic(() => import("../components/SignUp.jsx"));
+
+export default function SignUpPage() {
   return (
     <div>
       <SignUp />
     </div>
   );
-}
-
-export async function getServerSideProps() {
-  return {
-    props: {},
-  };
 }

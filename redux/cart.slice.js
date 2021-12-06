@@ -9,9 +9,8 @@ const cartSlice = createSlice({
         if(index >= 0) {
             state[index]?.quantity++;
         } else{
- state.push({...action.payload,quantity:1});
+        state.push({...action.payload,quantity:1});
         }
-       
     },
     emptyCart: (state) => {
        state = [];

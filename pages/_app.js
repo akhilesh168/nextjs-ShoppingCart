@@ -4,7 +4,7 @@ import store from "../redux/store";
 import "../styles/globals.css";
 import Layout from "../components/Layout.jsx";
 import { useAuthState } from "react-firebase-hooks/auth";
-import firebase from "../firebase/initAuth";
+import firebase from "../lib/firebase/initAuth";
 import { createContext } from "react";
 
 import Head from "next/head";

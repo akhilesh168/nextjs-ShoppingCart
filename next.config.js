@@ -5,5 +5,8 @@ module.exports = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     domains: ["localhost"],
   },
-  future: { webpack5: true },
+  env: {
+    STRIPE_PUBLIC_KEY: process.env.STRIPE_PUBLIC_KEY,
+    STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+  },
 };
